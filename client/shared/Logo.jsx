@@ -6,9 +6,9 @@ export default function Logo() {
       <figure className='w-[35px] h-[35px] mr-2'>
         <img src='/blogit.svg' className='' alt="blogit" />
       </figure>
-      <Link href="/" passHref>
+      {/* <Link href="/" passHref>
         <a href="/" className="text-xl font-poppins font-bold text-black">Blogit</a>
-      </Link>
+      </Link> */}
     </div>
   )
 }

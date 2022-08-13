@@ -9,15 +9,15 @@ export function Section({children, className}) {
 
 export function Nav({children}) {
     return (
-        <nav className="w-11/12 mx-auto max-w-9xl py-2">
+        <nav className="w-[95%] mx-auto  py-2">
             {children}
         </nav>
     )
 }
 
-export function Div({children}) {
+export function Div({children, className}) {
     return (
-        <div className="w-4/5 mx-auto max-5xl">
+        <div className={`w-[100%] mx-auto max-w-5xl ${className}`}>
             {children}
         </div>
     )

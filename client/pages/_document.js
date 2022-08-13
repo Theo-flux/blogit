@@ -13,6 +13,7 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"/>
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@0,400;1,100&display=swap" />
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet" />
       </Head>
       <body>
         <Main />
