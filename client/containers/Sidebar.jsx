@@ -29,9 +29,13 @@ const items = [
 ]
 
 
-const Capsule = ({item, setActiveSection, activeSection}) => {
+const Capsule = ({item, setActiveSection, activeSection, handleOpenSidebar}) => {
   return(
-    <div onClick={() => setActiveSection(item.name)} 
+    <div onClick={() => {
+      setActiveSection(item.name)
+      handleOpenSidebar()
+      }
+    } 
       className={`cursor-pointer flex justify-start items-start 
       py-2 px-3 mt-2 rounded-full hover:bg-orange-500 hover:text-white
       transition-all duration-300 ease-in-out
@@ -60,9 +64,9 @@ export default function Sidebar({activeSection, setActiveSection, openSidebar, h
 
   return (
     <aside 
-      className={`bg-white py-2 w-[80%] absolute z-50 top-0 ${openSidebar ? "left-0" : "left-[-600px]"}
-      md:relative md:left-0 sm:w-[30%] md:w-[20%] h-[100%] px-2 font-poppins transition-all duration-300 ease-in-out`}>
-      <div className='grid grid-cols-1 grid-rows-[_.2fr_450px_1fr]'>
+      className={`bg-white w-[75%] absolute z-50 top-0 ${openSidebar ? "left-0" : "left-[-600px]"}
+      md:relative md:left-0 sm:w-[30%] md:w-[25%] h-[100%] p-2 font-poppins transition-all duration-300 ease-in-out`}>
+      <div className='fixed h-screen w-[240px] sm:w-[200px] md:w-[170px] xl:w-[220px] grid grid-cols-1 grid-rows-[_.2fr_500px_1fr]'>
         <div className='p-1 flex justify-between'>
           <Logo/>
 
@@ -78,6 +82,7 @@ export default function Sidebar({activeSection, setActiveSection, openSidebar, h
                   setActiveSection={setActiveSection}
                   activeSection={activeSection}
                   item={item}
+                  handleOpenSidebar={handleOpenSidebar}
                 />
               )
             })
