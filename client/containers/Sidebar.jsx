@@ -64,10 +64,11 @@ export default function Sidebar({activeSection, setActiveSection, openSidebar, h
 
   return (
     <aside 
-      className={`bg-white w-[80%] absolute z-50 top-0 ${openSidebar ? "left-0" : "left-[-600px]"}
-      md:relative md:left-0 sm:w-[30%] md:w-[25%] h-[100%] p-2 font-poppins transition-all duration-300 ease-in-out`}>
+      className={`bg-white w-[70%] fixed z-50 top-0 ${openSidebar ? "left-0" : "left-[-600px]"}
+      md:relative md:left-0 sm:w-[30%] md:w-[25%] h-[100%] p-2 font-poppins transition-all duration-300 ease-in-out
+      `}>
       <div className='fixed h-screen w-[240px] sm:w-[200px] md:w-[170px] xl:w-[220px] grid grid-cols-1 grid-rows-[_.2fr_500px_1fr]'>
-        <div className='p-1 flex justify-between'>
+        <div className='px-1 flex justify-between'>
           <Logo/>
 
          <i onClick={() => handleOpenSidebar()}  className="md:hidden text-xl font-poppins font-bold ri-close-line"></i>

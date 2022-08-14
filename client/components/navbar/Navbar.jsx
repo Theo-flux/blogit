@@ -3,7 +3,7 @@ import {Logo, Section, Nav, ConnectButton} from '../../shared'
 
 export default function Navbar({activeSection, handleOpenSidebar}) {
   return (
-    <Section className={`bg-white`}>
+    <Section className={`shadow bg-white`}>
       <Nav>
         <div className='flex justify-between items-center'>
           <div className='flex justify-start items-start'>
