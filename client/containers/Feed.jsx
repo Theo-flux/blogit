@@ -6,7 +6,7 @@ export default function Feed({activeSection, handleOpenSidebar}) {
 
   return (
     <main className='w-[100%] absolute right-0 md:w-[75%] h-screen'>
-      <div className='border-x'>
+      <div className='md:border-x'>
         <div className='fixed z-20 w-[100%] md:w-[75%] lg:w-[766px]'>
           <Navbar handleOpenSidebar={handleOpenSidebar} activeSection={activeSection}/>
         </div>
