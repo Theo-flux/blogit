@@ -27,7 +27,7 @@ const TextArea = ({handler, message}) => {
     return(
         <textarea
             style={{resize: 'none'}}
-            className='overflow-hidden font-poppins text-sm md:text-xl placeholder:font-medium w-full outline-0' 
+            className='overflow-hidden font-poppins md:text-xl placeholder:font-medium w-full outline-0' 
             placeholder="What's happening?"
             name={"text"}
             value={message.text}

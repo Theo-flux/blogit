@@ -19,7 +19,7 @@ const icons = [
 
 export default function Blog({person}) {
   return (
-    <div className={`border-t font-poppins relative p-4 flex justify-between items-start w-[100%]`}>
+    <div className={`border-t font-poppins relative p-4 flex justify-between items-start w-[100%] hover:bg-gray-50 cursor-pointer`}>
         <img src={`${person.image}`} className='cursor-pointer w-[50px] h-[50px] border rounded-full mr-3' alt="profile image" />
         <div className='w-full'>
             <div className='flex justify-between items-start w-full'>
