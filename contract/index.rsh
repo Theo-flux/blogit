@@ -1,4 +1,7 @@
 'reach 0.1';
+const OBject=Object({
+
+});
 
 export const main = Reach.App(() => {
   //Alice will deploy the contract
@@ -10,7 +13,14 @@ export const main = Reach.App(() => {
   const B = Participant('Bob', {
    Mint: Fun([], Object({
      nftId: Token
-   })) // Specify Bob's interact interface here
+   })),
+   Post: Fun([], Object({
+     Id: UInt,
+     Owner: Address,
+     tipAmount: UInt,
+     postHash: Bytes(128)
+
+   }))
   });
   init();
   A.publish();
@@ -27,6 +37,8 @@ export const main = Reach.App(() => {
     const myNFTId= declassify(interact.Mint());
   })
   B.publish(myNFTId);
+  const M1= new Map (Address, OBject);
+  const Profiles= new Map (Address, UInt) //Address of a user mapped to the selected NFTId
   commit();
   // write your program here
   exit();

@@ -15,7 +15,8 @@ const ctcBob = accBob.contract(backend, ctcAlice.getInfo());
 
 const theNFT= await stdlib.launchToken(accBob, "BlogIt", "BLG", {supply: 1, metadataHash: "https://ipfs.io/ipfs/iQmeLJf1LrF3n6edoR5Dkzvr6gTmPWweHpd2xodUKFqKyHg"})
 const nftParams= {
-  nftId: theNFT.id
+  nftId: theNFT.id,
+  amtOfNFT: UInt
 }
 
 console.log('Starting backends...');

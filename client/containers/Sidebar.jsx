@@ -37,7 +37,7 @@ const Capsule = ({item, setActiveSection, activeSection, handleOpenSidebar}) => 
       }
     } 
       className={`cursor-pointer flex justify-start items-start 
-      py-2 px-3 mt-2 rounded-full hover:bg-gray-300 hover:text-white
+      py-2 px-3 mt-2 w-fit rounded-full hover:bg-gray-300 hover:text-white
       transition-all duration-300 ease-in-out
       ${activeSection === item.name && "text-black font-bold"}
       `}>
