@@ -9,16 +9,11 @@ const iconResource = [
 
     {
         id: 2,
-        name: "ri-file-gif-line",
+        name: "ri-emotion-happy-line",
     },
 
     {
         id: 3,
-        name: "ri-file-line",
-    },
-
-    {
-        id: 4,
         name: "ri-file-line",
     },
 
@@ -65,13 +60,13 @@ export default function Blogbox() {
                         {
                             iconResource.map((icon) => {
                                 return(
-                                    <i key={icon.id} className={`text-xl font-light mr-2  text-blue-500 ${icon.name}`}/>
+                                    <i key={icon.id} className={`cursor-pointer font-light mr-2 md:mr-3  text-blue-500 ${icon.name}`}/>
                                 )
                             })
                         }
                     </div>
 
-                    <Button disabled={message.text ? false: true} text="blog it" className={`disabled:bg-gray-200`}/>
+                    <Button disabled={message.text ? false: true} text="blog it" className={`disabled:bg-gray-200 transition-all duration-300 ease-in-out`}/>
                 </div>
             </div>
         </div>
