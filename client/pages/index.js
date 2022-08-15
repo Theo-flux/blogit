@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Feed, Layout, Sidebar } from '../containers'
 
 export default function Home() {
@@ -8,6 +8,15 @@ export default function Home() {
   function handleOpenSidebar(){
     setOpenSidebar(!openSidebar)
   }
+
+  useEffect(() => {
+    const data = window.localStorage.getItem('active');
+    if ( data !== null ) setActiveSection(JSON.parse(data));
+  }, [])
+
+  useEffect(() => {
+    window.sessionStorage.setItem("active", JSON.stringify(activeSection))
+  }, [activeSection])
 
   return (
     <Layout>

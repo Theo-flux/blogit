@@ -7,7 +7,7 @@ export default function Layout({ children }) {
   return (
     <Section>
       <Div>
-        <div className='w-[100%] h-screen relative md:flex md:flex-row md:justify-between md:items-start'>
+        <div className='w-[100%] h-screen relative md:flex md:flex-row md:justify-start md:items-start'>
            {children}
         </div>
       </Div>

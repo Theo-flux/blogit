@@ -9,7 +9,7 @@ export function Section({children, className}) {
 
 export function Nav({children}) {
     return (
-        <nav className="w-[95%] mx-auto  py-2">
+        <nav className="w-[95%] mx-auto py-3 md:py-2">
             {children}
         </nav>
     )
