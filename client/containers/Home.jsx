@@ -11,14 +11,14 @@ const people = [
   },
 
   {
-    id: 1,
+    id: 2,
     image: "/profile-1.svg",
     name: "Mehmet Doğan",
     username: "@mehmet_doğan",
     message: "Size bir soru. Şimdi dün bunun içindeki ampulü çıkarıp projeksiyon aletine taktım. Bunların işime yaraması artık mümkün değil. Benzer durumlarda direkt atıyor musunuz böyle şeyleri?",
   },
    {
-    id: 1,
+    id: 3,
     image: "/profile-image.svg",
     name: "Adem ilter ✨",
     username: "@ademilter",
@@ -26,7 +26,7 @@ const people = [
   },
 
   {
-    id: 1,
+    id: 4,
     image: "/profile-image.svg",
     name: "Adem ilter ✨",
     username: "@ademilter",
@@ -34,7 +34,7 @@ const people = [
   },
 
   {
-    id: 1,
+    id: 5,
     image: "/profile-2.svg",
     name: "Mehmet Doğan",
     username: "@mehmet_doğan",
@@ -42,7 +42,7 @@ const people = [
   },
 
   {
-    id: 1,
+    id: 6,
     image: "/profile-image.svg",
     name: "Adem ilter ✨",
     username: "@ademilter",
@@ -50,14 +50,14 @@ const people = [
   },
 
   {
-    id: 1,
+    id: 7,
     image: "/profile-2.svg",
     name: "Mehmet Doğan",
     username: "@mehmet_doğan",
     message: "Size bir soru. Şimdi dün bunun içindeki ampulü çıkarıp projeksiyon aletine taktım. Bunların işime yaraması artık mümkün değil. Benzer durumlarda direkt atıyor musunuz böyle şeyleri?",
   },
   {
-    id: 1,
+    id: 8,
     image: "/profile-image.svg",
     name: "Adem ilter ✨",
     username: "@ademilter",

@@ -42,7 +42,7 @@ export default function Blog({person}) {
                 {
                     icons.map((icon) => {
                         return (
-                            <i className={`mr-6 text-blue-500 cursor-pointer ${icon.name}`}/>
+                            <i key={icon.id} className={`mr-6 text-blue-500 cursor-pointer ${icon.name}`}/>
                         )
                     })
                 }
