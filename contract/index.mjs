@@ -1,40 +1,79 @@
-import {loadStdlib} from '@reach-sh/stdlib';
-import * as backend from './build/index.main.mjs';
-const stdlib = loadStdlib(process.env.PRIVATE_KEY);
-
-const startingBalance = stdlib.parseCurrency(100);
-
-const [ accAlice, accBob ] =
-  await stdlib.newTestAccounts(2, startingBalance);
-console.log('Hello, Alice and Bob!');
-
-console.log('Launching...');
-const ctcAlice = accAlice.contract(backend);
-const ctcBob = accBob.contract(backend, ctcAlice.getInfo());
+import {loadStdlib, ask} from "@reach-sh/stdlib";
+import * as backend from "./build/index.main.mjs";
 
 
-const theNFT= await stdlib.launchToken(accBob, "BlogIt", "BLG", {supply: 1, metadataHash: "https://ipfs.io/ipfs/iQmeLJf1LrF3n6edoR5Dkzvr6gTmPWweHpd2xodUKFqKyHg"})
-const nftParams= {
-  nftId: theNFT.id,
-  amtOfNFT: UInt
+const stdlib= loadStdlib()
+
+const isDeployer= await ask.ask(
+  "Are you the deployer?",
+  ask.yesno
+);
+const who= isDeployer? "Deployer": "Users"
+
+console.log(`starting the blog as ${who}`)
+
+let acc= null
+const createAcc= await ask.ask(
+  "Do you want to create account?",
+  ask.yesno
+);
+if(createAcc){
+  acc= await stdlib.newTestAccount(stdlib.parseCurrency(1000))
+} else{
+  const secret= await ask.ask(
+    "What is your account secret?",
+    (x=>x)
+  );
+  acc= await stdlib.newAccountFromSecret(secret);
+
 }
+let ctc= null
+if (isDeployer){
+  ctc=  acc.contract(backend);
+  ctc.getInfo().then((info)=> {console.log(`this is the contract info ${JSON.stringify(info)}`)})
+} else{
+  const info= await ask.ask(
+    "please paste the contract info",
+    JSON.parse
+  )
+  ctc= await acc.contract(backend, info)
+}
+const interact= {...stdlib.hasRandom}
+if(isDeployer){
+  interact.amt=5
+}
+if(!isDeployer){
+ const mintnftProfile= await ask.ask(
+  "Do you wanna mint NFT as profile",
+  ask.yesno
+ )
+ if(mintnftProfile){
+ 
+  interact.mintNFTAsProfile=()=>{
+    const nft= await stdlib.launchToken(acc, "name", "syn",{supply:1})
+    return nft.id
+  }
+  const de= await acc.balancesOf([nft.id])
+  console.log (`${de}`)
+}
+}
+if(!isDeployer){
+  const createPosts= await ask.ask(
+    "Submit your post?",
+    (x=>x)
+  )
+  
+  interact.mintPost=()=>{
+    const post= await stdlib.launchToken(acc, "nam", "sy",{supply:1, metadaHash: "createPost"})
+   getParams={
+    id: post.id,
+    tipAmount: 5
+  }
+    return getParams;
+  }
+  console.log(`${acc.getAddress()}`)
+}
+const part = isDeployer ? ctc.p.Deployer : ctc.p.Users;
+await part(interact);
 
-console.log('Starting backends...');
-await Promise.all([
-  backend.Alice(ctcAlice, {
-    ...stdlib.hasRandom,
-    ctcAddress: (info)=>{
-      console.log(`This is the contract Address ${info}`)
-    }
-    // implement Alice's interact object here
-  }),
-  backend.Bob(ctcBob, {
-    ...stdlib.hasRandom,
-    Mint: ()=>{
-      return nftParams
-    }
-    // implement Bob's interact object here
-  }),
-]);
-
-console.log('Goodbye, Alice and Bob!');
+ask.done()
