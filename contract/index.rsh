@@ -1,44 +1,42 @@
 'reach 0.1';
-const OBject=Object({
-
-});
 
 export const main = Reach.App(() => {
-  //Alice will deploy the contract
-  const A = Participant('Alice', {
+  const A = Participant('Deployer', {
+    ...hasRandom,
+    amt: UInt
     // Specify Alice's interact interface here
-    ctcAddress: Fun([Address], Null)
   });
-  //Bob will be able to mint NFT and publish on-chain while storing the metadata on IPFS
-  const B = Participant('Bob', {
-   Mint: Fun([], Object({
-     nftId: Token
-   })),
-   Post: Fun([], Object({
-     Id: UInt,
-     Owner: Address,
-     tipAmount: UInt,
-     postHash: Bytes(128)
-
-   }))
+  const B = Participant('Users', {
+      ...hasRandom,
+      mintNFTAsProfile:Fun([], Token),
+      mintPost: Fun([], Object({
+        id: Token,
+        tipAmount: UInt,
+      
+       }))
+      // payTip: Fun([UInt], Object({
+      //   postID: Token,
+      //   author: Address
+      // })) //this includes the amount of Tip, the ID of the post you wanna tip and the address that created the post
+      
+    // Specify Bob's interact interface here
   });
   init();
-  A.publish();
-  const info= getAddress();
-  commit();
-  A.only(()=>{
-    interact.ctcAddress(info)
-  })
   // The first one to publish deploys the contract
- 
-
-  // The second one to publish always attaches
-  B.only(()=>{
-    const myNFTId= declassify(interact.Mint());
+  A.only(()=>{
+   const amts= declassify(interact.amt);
   })
-  B.publish(myNFTId);
-  const M1= new Map (Address, OBject);
-  const Profiles= new Map (Address, UInt) //Address of a user mapped to the selected NFTId
+  A.publish(amts);
+  commit();
+  B.only(()=>{
+    const mintedNFT= declassify(interact.mintNFTAsProfile());
+    //const {id, tipAmount}=declassify(interact.mintPost());
+  })
+  // The second one to publish always attaches
+  B.publish(mintedNFT);
+ 
+  
+  
   commit();
   // write your program here
   exit();
