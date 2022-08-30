@@ -49,30 +49,47 @@ if(!isDeployer){
  )
  if(mintnftProfile){
  
-  interact.mintNFTAsProfile=()=>{
-    const nft= await stdlib.launchToken(acc, "name", "syn",{supply:1})
-    return nft.id
+  interact.mintNFTAsProfile=async()=>{
+    const  nft= await stdlib.launchToken(acc, "name", "syn",{supply:1})
+    let x=true
+    const arrayMint=[]
+    while (x){
+      const minting= await ask.ask(
+        "Do you still wanna mint more images as profile?",
+        ask.yesno
+
+      )
+      if (minting){
+    
+        arrayMint.push(nft.id)
+        
+      } else{
+         x=false
+      }
+
+    }
+    console.log(arrayMint[2])
+    return arrayMint
   }
-  const de= await acc.balancesOf([nft.id])
-  console.log (`${de}`)
+ 
 }
 }
-if(!isDeployer){
-  const createPosts= await ask.ask(
-    "Submit your post?",
-    (x=>x)
-  )
+// if(!isDeployer){
+//   const createPosts= await ask.ask(
+//     "Submit your post?",
+//     (x=>x)
+//   )
   
-  interact.mintPost=()=>{
-    const post= await stdlib.launchToken(acc, "nam", "sy",{supply:1, metadaHash: "createPost"})
-   getParams={
-    id: post.id,
-    tipAmount: 5
-  }
-    return getParams;
-  }
-  console.log(`${acc.getAddress()}`)
-}
+//   interact.mintPost=()=>{
+//     const post= await stdlib.launchToken(acc, "nam", "sy",{supply:1, metadaHash: "createPost"})
+//    getParams={
+//     id: post.id,
+//     tipAmount: 5
+//   }
+//     return getParams;
+//   }
+//   console.log(`${acc.getAddress()}`)
+// }
 const part = isDeployer ? ctc.p.Deployer : ctc.p.Users;
 await part(interact);
 
