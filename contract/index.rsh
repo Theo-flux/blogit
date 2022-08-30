@@ -3,12 +3,12 @@
 export const main = Reach.App(() => {
   const A = Participant('Deployer', {
     ...hasRandom,
-    amt: UInt
+  
     // Specify Alice's interact interface here
   });
   const B = Participant('Users', {
       ...hasRandom,
-      mintNFTAsProfile:Fun([], Token),
+      mintNFTAsProfile:Fun([], Array(Token, 3)), //Can I make a dynamic array?
       mintPost: Fun([], Object({
         id: Token,
         tipAmount: UInt,
@@ -23,17 +23,17 @@ export const main = Reach.App(() => {
   });
   init();
   // The first one to publish deploys the contract
-  A.only(()=>{
-   const amts= declassify(interact.amt);
-  })
-  A.publish(amts);
+ 
+  A.publish();
   commit();
   B.only(()=>{
     const mintedNFT= declassify(interact.mintNFTAsProfile());
     //const {id, tipAmount}=declassify(interact.mintPost());
   })
-  // The second one to publish always attaches
+  //returned an array of NFTs
   B.publish(mintedNFT);
+
+  //mapping the mintedNFT
  
   
   
